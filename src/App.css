@@ -1,38 +1,54 @@
 .App {
-  text-align: center;
+    
+    height: 100vh;
+    background-size: cover;
+    background-position: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.city {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.city_name {
+    position: absolute;
+    top: 10%;
+    color: white;
+    font-size: 2.25em;
+    font-family: 'Helvetica Neue', sans-serif;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    transition: all 0.3s ease-in-out;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.city_temperature {
+    position: absolute;
+    top: 15%;
+    font-size: 5em;
+    color: #f0f0f0;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+    font-weight: bold;
+    padding: 5px 10px;
+    border-radius: 5px;
 }
 
-.App-link {
-  color: #61dafb;
+.weather_description {
+    position: absolute;
+    top: 27%;
+    font-size: 1.75em;
+    color: #cccccc;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.time_of_sunrise {
+    position: absolute;
+    color: white;
+    top: 33%;
+    left: 40%;
+}
+
+.time_of_sunset {
+    position: absolute;
+    color: white;
+    top: 33%;
+    right: 40%;
 }
