@@ -1,4 +1,5 @@
 import React from 'react'
+import './City.css';
 import sunriseIcon from '../images/sunrise.svg'
 import sunsetIcon from '../images/sunset.svg'
 
