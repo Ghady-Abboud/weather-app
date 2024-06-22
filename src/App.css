@@ -1,17 +1,16 @@
 .App {
-    
     height: 100vh;
     background-size: cover;
     background-position: center;
-}
-
-.city {
+  }
+  
+  .city {
     display: flex;
     flex-direction: column;
     align-items: center;
-}
-
-.city_name {
+  }
+  
+  .city_name {
     position: absolute;
     top: 10%;
     color: white;
@@ -19,9 +18,9 @@
     font-family: 'Helvetica Neue', sans-serif;
     text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
     transition: all 0.3s ease-in-out;
-}
-
-.city_temperature {
+  }
+  
+  .city_temperature {
     position: absolute;
     top: 15%;
     font-size: 5em;
@@ -30,25 +29,36 @@
     font-weight: bold;
     padding: 5px 10px;
     border-radius: 5px;
-}
-
-.weather_description {
+  }
+  
+  .weather_description {
     position: absolute;
     top: 27%;
     font-size: 1.75em;
     color: #cccccc;
-}
-
-.time_of_sunrise {
+  }
+  
+  .time_of_sunrise, 
+  .time_of_sunset {
+    display: flex;
+    align-items: center;
     position: absolute;
     color: white;
+    font-size: 1em;
+  }
+  
+  .time_of_sunrise {
     top: 33%;
     left: 40%;
-}
-
-.time_of_sunset {
-    position: absolute;
-    color: white;
+  }
+  
+  .time_of_sunset {
     top: 33%;
     right: 40%;
-}
+  }
+  
+  .icon {
+    width: 27px;
+    height: 27px;
+    margin-right: 5px;
+  }

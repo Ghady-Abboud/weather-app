@@ -1,6 +1,10 @@
+import React from 'react';
 import './App.css';
 import City from './components/City';
 import backgroundImage from './images/background_image.jpg';
+import SearchBar from './components/SearchBar';
+
+/* Dimensions for PC are 2560*/
 
 function App() {
   return (
@@ -14,6 +18,8 @@ function App() {
     sunset = "5:55 PM"
     />
     
+    <SearchBar />
+
     </div>
   );
 }
