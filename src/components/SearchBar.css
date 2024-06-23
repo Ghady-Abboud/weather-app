@@ -9,8 +9,17 @@
   
   .wrapper {
     position: absolute;
-    top: 13%; 
-    left: 5%; 
+
+    @media (min-width: 2560px) {
+      top: 13%; 
+      left: 5%; 
+    }
+
+    @media (max-width:1440px) {
+      top: 15%;
+      left: 1%;
+    }
+    
   }
   
   .container {

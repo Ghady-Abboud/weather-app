@@ -27,9 +27,18 @@
   
   .weather_description {
     position: absolute;
-    top: 27%;
-    font-size: 1.75em;
     color: #cccccc;
+    
+    @media (min-width :2560px) {
+      top: 27%;
+      font-size: 1.75em;
+    }
+
+    @media (max-width:1440px) {
+      top: 30%;
+      font-size: 1.2em;
+    }
+    
   }
   
   .time_of_sunrise, 
@@ -42,13 +51,31 @@
   }
   
   .time_of_sunrise {
-    top: 33%;
-    left: 40%;
+
+    @media (min-width:2560px ) {
+      top: 33%;
+      left: 40%;
+    }
+    
+    @media (max-width:1440px ) {
+      top: 36%;
+      left: 40%;
+    }
+
   }
   
   .time_of_sunset {
-    top: 33%;
-    right: 40%;
+
+    @media (min-width:2560px ) {
+      top: 33%;
+      left: 40%;
+    }
+
+    @media (max-width:1440px ) {
+      top: 36%;
+      right: 40%;
+    }
+
   }
   
   .icon {

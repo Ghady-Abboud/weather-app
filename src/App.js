@@ -4,7 +4,7 @@ import City from './components/City';
 import backgroundImage from './images/background_image.jpg';
 import SearchBar from './components/SearchBar';
 
-/* Dimensions for PC are 2560*/
+/* Dimensions for PC are 2560 and laptop is 1440*/
 
 function App() {
   return (
