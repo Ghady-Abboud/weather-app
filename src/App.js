@@ -3,6 +3,7 @@ import './App.css';
 import City from './components/City';
 import backgroundImage from './images/background_image.jpg';
 import SearchBar from './components/SearchBar';
+import Forecast from './components/Forecast';
 
 /* Dimensions for PC are 2560 and laptop is 1440*/
 
@@ -19,6 +20,8 @@ function App() {
     />
     
     <SearchBar />
+
+    <Forecast />
 
     </div>
   );

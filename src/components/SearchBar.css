@@ -10,8 +10,8 @@
   .wrapper {
     position: absolute;
 
-    @media (min-width: 2560px) {
-      top: 13%; 
+    @media (min-width: 1920px) {
+      top: 15%; 
       left: 5%; 
     }
 
