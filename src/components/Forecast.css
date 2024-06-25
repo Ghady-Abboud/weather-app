@@ -16,7 +16,7 @@
 
 .day_of_week h1 {
     font-size: 20px;
-    color: #ffffff;
+    color: #cccccc;
     text-align: center;
 }
 
@@ -26,7 +26,7 @@
 }
 
 .forecast-item {
-    background: rgba(255,255,255,0.3);
+    background: #404969;
     padding: 10px;
     border-radius: 10px;
     color: aliceblue;
@@ -36,7 +36,15 @@
     font-weight: normal;
     font-size: 1em;
     height: 11em;
-    width: 11em;
+    width: 13em;
+}
+
+.temp {
+    position: relative;
+    color: antiquewhite;
+    left: 5%;
+    bottom: 20px;
+    font-size: 50px;
 }
 
 
