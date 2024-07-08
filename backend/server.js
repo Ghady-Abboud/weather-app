@@ -9,6 +9,7 @@ app.use(cors());
 const API_KEY = "1a0d99a29e994ebdbd724500242606"
 const current_URL = "http://api.weatherapi.com/v1/current.json";
 const forecast_URL = "http://api.weatherapi.com/v1/forecast.json";
+const countries_URL = "https://countriesnow.space/api/v0.1/countries";
 
 
 app.get("/current" , async (req,res) => {
@@ -25,7 +26,7 @@ app.get("/current" , async (req,res) => {
 
     const {city:name, country} = response.data.location;
     
-    console.log(city,country)
+    
     res.json(response.data);
 
 } catch (error) {
@@ -33,6 +34,7 @@ app.get("/current" , async (req,res) => {
 }
 
 });
+
 
 
 app.listen(5000, () => {

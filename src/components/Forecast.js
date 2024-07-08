@@ -13,6 +13,8 @@ const Forecast = () => {
         { day: "Sun 06/29", icon: <CloudyDay />, temperature: 23 }
     ];
 
+
+    
     return (
         <div className="forecast-container">
             <h1 className="forecast-heading">Daily</h1>
