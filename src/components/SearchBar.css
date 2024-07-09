@@ -10,7 +10,7 @@ body {
 .wrapper {
   position: absolute;
   @media (min-width: 1920px) {
-      top: 15%; 
+      top: 20%; 
       left: 5%; 
   }
   @media (max-width:1440px) {

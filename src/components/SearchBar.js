@@ -1,74 +1,61 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import './SearchBar.css';
+import React, { useState } from 'react';
+import './SearchBar.css';  
 
-const SearchBar = () => {
-    const [query, setQuery] = useState('');
-    const [suggestions, setSuggestions] = useState([]);
-    const [showSuggestions, setShowSuggestions] = useState(false);
-    const [selectedCity , setselectedCity] = useState(null);
-    const [weatherData, setweatherData] = useState(null);
+const SearchBar = ({ setWeatherData }) => { // Receive setWeatherData as a prop
+  const [isFocused, setIsFocused] = useState(false);
+  const [userInput, setUserInput] = useState('');
 
-    useEffect(() => {
-        const fetchSuggestions = async () => {
-            if (query.length > 0) {
-                try {
-                    const response = await axios.get(`http://localhost:5000/countries`, {
-                        params: { search: query }
-                    });
-                    setSuggestions(response.data);
-                    setShowSuggestions(true);
-                } catch (error) {
-                    console.error("Error fetching suggestions", error);
-                }
-            } else {
-                setSuggestions([]);
-                setShowSuggestions(false);
-            }
-        };
+  const handleFocus = () => {
+    setIsFocused(true);
+  };
 
-        fetchSuggestions();
-    }, [query]);
+  const handleBlur = () => {
+    setIsFocused(false);
+  };
 
-    const handleSuggestionClick = (country, city = null) => {
-        setQuery(city ? `${city}, ${country}` : country);
-        setShowSuggestions(false);
-    };
+  const clearInput = () => {
+    setUserInput('');
+  };
 
-    return (
-        <div className="wrapper">
-            <div className="container">
-                <input 
-                    type="text" 
-                    value={query} 
-                    onChange={(e) => setQuery(e.target.value)} 
-                    placeholder="Search for a city"
-                    className="input"
-                />
-                <span className={`close-btn ${query.length > 0 ? 'active' : ''}`} onClick={() => setQuery('')}>&times;</span>
-                {showSuggestions && (
-                    <ul className="suggestions">
-                        {suggestions.map((suggestion, index) => (
-                            <li key={index} className="suggestion-item">
-                                <strong onClick={() => handleSuggestionClick(suggestion.country)}>
-                                    {suggestion.country}
-                                </strong>
-                                <ul className="city-list">
-                                    {suggestion.cities
-                                        .filter(city => city.toLowerCase().includes(query.toLowerCase()))
-                                        .map((city, i) => (
-                                            <li key={i} onClick={() => handleSuggestionClick(suggestion.country, city)}>
-                                                {city}
-                                            </li>
-                                        ))}
-                                </ul>
-                            </li>
-                        ))}
-                    </ul>
-                )}
-            </div>
+  const handleSearch = async (event) => {
+    if(event.key === 'Enter') {
+      clearInput();
+      try {
+        const response = await fetch(`http://localhost:5000/current?city=${userInput}`);
+        if (!response.ok) {
+          throw new Error("Failed to fetch the weather data");
+        }
+        const data = await response.json();
+        setWeatherData(data); 
+
+      } catch(error) {
+        console.error(error);
+      }
+    }
+  };
+
+  return (
+    <div className="wrapper">
+      <div className="container">
+        <input
+          type="text"
+          className="input"
+          placeholder="Search"
+          value={userInput}
+          onFocus={handleFocus}
+          onBlur={handleBlur}
+          onChange={(event) => setUserInput(event.target.value)}
+          onKeyDown={handleSearch}
+        />
+        <div
+          className={`close-btn ${isFocused ? 'active' : ''}`}
+          onClick={clearInput}
+        >
+          &times;
         </div>
-    );
+      </div>
+    </div>
+  );
 };
 
 export default SearchBar;

@@ -1,42 +1,38 @@
-const express = require('express');
-const axios = require('axios');
-const cors = require('cors');
+  const express = require('express');
+  const axios = require('axios');
+  const cors = require('cors');
 
-const app = express();
+  const app = express();
 
-app.use(cors());
+  app.use(cors());
 
-const API_KEY = "1a0d99a29e994ebdbd724500242606"
-const current_URL = "http://api.weatherapi.com/v1/current.json";
-const forecast_URL = "http://api.weatherapi.com/v1/forecast.json";
-const countries_URL = "https://countriesnow.space/api/v0.1/countries";
+  const PORT = 5000;
+  const API_KEY = "75b984cadb2a640e7bbe4501f38aab74";
 
-
-app.get("/current" , async (req,res) => {
-    const {city} = req.query;
+  app.get("/current", async (req, res) => {
 
     try {
-        const response = await axios.get(current_URL, {params : {
-            key : API_KEY,
-            q : city
-        }
+      
+      const cityName = req.query.city;
+      const response = await axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${API_KEY}`);
+
+      const WeatherData = {
+        name: response.data.name ,
+        temperature : response.data.main.temp ,
+        description : response.data.weather[0].description ,
+        humidity : response.data.main.humidity ,
+        sunrise : response.data.sys.sunrise ,
+        sunset : response.data.sys.sunset,
+        country: response.data.sys.country
+      };
+
+      res.json(WeatherData);
+      
+    } catch(error) {
+      console.error(error);
     }
+  });
 
-    );
-
-    const {city:name, country} = response.data.location;
-    
-    
-    res.json(response.data);
-
-} catch (error) {
-    res.status(500).json({error:"Failed to fetch current weather data"});
-}
-
-});
-
-
-
-app.listen(5000, () => {
-    console.log(`Server is running on port 5000`);
-});
+  app.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}`);
+  });

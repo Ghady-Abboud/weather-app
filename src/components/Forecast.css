@@ -5,12 +5,12 @@
 }
 
 .forecast-heading {
+    display: flex;
     position: relative;
     left: 5%;
     color: aliceblue;
     font-family: 'Helvetica Neue', sans-serif;
     font-weight: normal;
-    margin-bottom: 10px;
     padding-bottom: 20px;
 }
 
