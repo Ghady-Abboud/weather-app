@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './SearchBar.css';  
 
-const SearchBar = ({ setWeatherData }) => { // Receive setWeatherData as a prop
+const SearchBar = ({ setWeatherData }) => { 
   const [isFocused, setIsFocused] = useState(false);
   const [userInput, setUserInput] = useState('');
 
@@ -25,6 +25,7 @@ const SearchBar = ({ setWeatherData }) => { // Receive setWeatherData as a prop
         if (!response.ok) {
           throw new Error("Failed to fetch the weather data");
         }
+        
         const data = await response.json();
         setWeatherData(data); 
 
