@@ -7,21 +7,24 @@ import Forecast from './components/Forecast';
 
 function App() {
   const [weatherData, setWeatherData] = useState(null);
+  const [forecastData , setForecastData] = useState(null);
 
   const convertKelvinToCelsius = (kelvin) => {
     return (kelvin - 273.15).toFixed(0);
   };
 
   useEffect(() => {
-    // Fetch weather data when component mounts
     const fetchData = async () => {
       try {
-        const response = await fetch(`http://localhost:5000/current?city=London`); // Replace 'London' with userInput
-        if (!response.ok) {
+        const response = await fetch(`http://localhost:5000/current?city=Philadelphia`);
+        const forecastResponse = await fetch (`http://localhost:5000/forecast?city=Philadelphia`)
+        if (!response.ok || !forecastResponse.ok) {
           throw new Error("Failed to fetch the weather data");
         }
         const data = await response.json();
+        const forecastData = await forecastResponse.json();
         setWeatherData(data);
+        setForecastData(forecastData.slice(1));
       } catch (error) {
         console.error(error);
       }
@@ -46,7 +49,7 @@ function App() {
             country={weatherData.country}
             weatherID = {weatherData.weatherID}
           />
-          <Forecast />
+          <Forecast forecastData = {forecastData} />
         </>
       )}
     </div>

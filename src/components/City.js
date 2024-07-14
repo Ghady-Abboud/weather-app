@@ -2,33 +2,18 @@ import React from 'react';
 import './City.css';
 import sunriseIcon from '../images/sunrise.svg';
 import sunsetIcon from '../images/sunset.svg';
-import { ClearDay, CloudyDay, RainyDay, SnowyDay, Thunder } from '../images/svgbackground';
+import { getWeatherIcon } from './WeatherIcons';
 
 const City = (props) => {
   
-  let weatherIcon;
-
-  if (200 <= props.weatherID && props.weatherID <= 232) {
-    weatherIcon = <Thunder />;
-  } else if (300 <= props.weatherID && props.weatherID <= 531) {
-    weatherIcon = <RainyDay />;
-  } else if (600 <= props.weatherID && props.weatherID <= 622) {
-    weatherIcon = <SnowyDay />;
-  } else if (801 <= props.weatherID && props.weatherID <= 804) {
-    weatherIcon = <CloudyDay />;
-  } else if (props.weatherID === 800) {
-    weatherIcon = <ClearDay />;
-  } else {
-    
-    weatherIcon = <ClearDay />; 
-  }
+  const WeatherIcon = getWeatherIcon(props.weatherID);
   
   return (
     <div className="city">
       <div className="city_name">{props.name}</div>
 
       <div className="city_temperature">
-        {weatherIcon}
+        {WeatherIcon}
         {props.temperature} °C 
       </div>
 

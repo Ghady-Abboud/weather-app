@@ -9,11 +9,14 @@ app.use(cors());
 const PORT = 5000;
 const API_KEY = "75b984cadb2a640e7bbe4501f38aab74";
 
+
+// https://www.weatherbit.io/account/dashboard       This is the API for the forecasted weather, 50 calls per day be careful
+
 app.get("/current", async (req, res) => {
   try {
     const cityName = req.query.city;
     const response = await axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${API_KEY}`);
-
+    
     const WeatherData = {
       name: response.data.name,
       temperature: response.data.main.temp,
@@ -33,6 +36,26 @@ app.get("/current", async (req, res) => {
     res.status(500).send('Error fetching weather data');
   }
 });
+
+app.get("/forecast", async (req, res) => {
+
+  try {
+    const cityName = req.query.city;
+    const response = await axios.get(`https://api.weatherbit.io/v2.0/forecast/daily?city=${cityName}&key=68e115995d4941a28e7fda7c89b84c90`);
+
+    const forecastData = response.data.data.map(day => ({
+      date : day.valid_date,
+      temp : day.temp,
+      weatherID : day.weather.code
+
+    }));
+
+    res.json(forecastData);
+
+  } catch(error) {
+    console.error(error);
+  }
+})
 
 function convertUnixToTime(timestamp, timezoneOffset) {
   const date = new Date((timestamp + timezoneOffset) * 1000);
